@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 // import classnames from 'classnames';
 import meetup from 'meetup-api';
-import './App.css';
+import '../scss/meetup.css';
 
 const key = '5b2673b3d6d25207d1fe562a33436b';
 const api = meetup({ key });
 
-class App extends Component {
+class Meetup extends Component {
   state = {
     attendees: [],
     searchString: '',
@@ -131,4 +131,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Meetup;
