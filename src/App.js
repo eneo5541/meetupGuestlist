@@ -32,7 +32,11 @@ class App extends Component {
 
   updateAttendees(attendees) {
     this.setState({ attendees });
-    localStorage.setItem('react-sydney-latest-event', JSON.stringify({ ...this.state, attendees }))
+    localStorage.setItem('react-sydney-latest-event', JSON.stringify({
+      id: this.state.id,
+      name: this.state.name,
+      attendees,
+    }))
   }
 
   getEventAttendees(err, resp) {
@@ -63,23 +67,46 @@ class App extends Component {
     this.setState({ searchString });
   }
 
+  onAddAttendee(event) {
+    const attendeeName = event.target.value.toLowerCase();
+    this.setState({ attendeeName });
+  }
+
+  addNewAttendee() {
+    const attendeeName = this.state.attendeeName;
+    if (attendeeName) {
+      const attendees = this.state.attendees.concat([{
+        id: `${attendeeName}-${Date.now()}`,
+        name: attendeeName,
+        avatar: null,
+        arrived: true,
+      }]);
+      this.setState({ attendeeName: '' });
+      this.updateAttendees(attendees);
+    }
+  }
+
   render() {
-    // console.log(this.state.attendees);
+    // console.log(this.state);
     return (
       <div className="App">
         <h1>React Sydney</h1>
-        <input type='text' onChange={(event) => { this.onSearch(event); }} placeholder='Enter name' />
-        <button onClick={() => { this.checkEventData(); }}>Refresh attendees</button>
+        <input type="text" onChange={event => this.onSearch(event)} placeholder="Search for an attendee" />
+        <button onClick={() => (this.checkEventData())}>Refresh attendees</button>
+        <input type="text" onChange={event => this.onAddAttendee(event)} value={this.state.attendeeName} placeholder="Add a new attendee" />
+        <button onClick={() => (this.addNewAttendee())}>Add new attendee</button>
         <ul>
           {this.state.attendees
             .filter(attendee => attendee.name.toLowerCase().indexOf(this.state.searchString) > -1)
             .map((attendee, key) => (
             <li key={key}>
-              {attendee.avatar &&
-                <img className='avatar' alt={`Avatar of ${attendee.name}`} src={attendee.avatar} />
-              }
-              <div className='name'>{attendee.name}</div>
-              <div className='confirmation'>
+              <div className="avatar-container">
+                {attendee.avatar &&
+                  <img className="avatar" alt={`Avatar of ${attendee.name}`} src={attendee.avatar} />
+                }
+              </div>
+              <div className="name">{attendee.name}</div>
+              <div className="confirmation">
                 {!attendee.arrived ?
                   <span>
                     Confirm attendance: 
