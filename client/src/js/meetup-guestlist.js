@@ -5,7 +5,7 @@ const loadAttendeesFromLocalStorage = () => {
   return latestEvent ? latestEvent.attendees : [];
 }
 
-class App extends Component {
+class MeetupGuestlist extends Component {
   state = {
     currentEvent: { id: null, name: null },
     attendees: loadAttendeesFromLocalStorage(),
@@ -98,29 +98,17 @@ class App extends Component {
             .filter(attendee => attendee.name.toLowerCase().indexOf(this.state.searchString) > -1)
             .map((attendee, key) => (
             <li key={key}>
-              <div className="avatar-container">
-                {attendee.avatar &&
-                  <img className="avatar" alt={`Avatar of ${attendee.name}`} src={attendee.avatar} />
-                }
-              </div>
-              <div className="name">{attendee.name}</div>
-              <div className="confirmation">
-                {!attendee.arrived ?
-                  <span>
-                    Confirm attendance: 
-                    <button onClick={() => { this.toggleAttendeeArrival(attendee.id, true); }}>
-                      <span role="img" aria-label={`Confirm arrival of ${attendee.name}`}>✅</span>
-                    </button>
-                  </span> :
-                  <span>
-                    User attending!
-                    Remove attendance: 
-                    <button onClick={() => { this.toggleAttendeeArrival(attendee.id, false); }}>
-                      <span role="img" aria-label={`Decline arrival of ${attendee.name}`}>❌</span>
-                    </button>
-                  </span>
-                }
-              </div>
+              <button onClick={() => { this.toggleAttendeeArrival(attendee.id, !attendee.arrived); }}>
+                <div className="avatar-container">
+                  {attendee.avatar &&
+                    <img className="avatar" alt={`Avatar of ${attendee.name}`} src={attendee.avatar} />
+                  }
+                </div>
+                <div className="name">{attendee.name}</div>
+                <span className="confirmation" role="img" aria-label={`${attendee.arrived ? 'Decline' : 'Confirm'} arrival of ${attendee.name}`}>
+                  { attendee.arrived ? '❌' : '✅' }
+                </span>
+              </button>
             </li>
           ))}
         </ul>
@@ -129,4 +117,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default MeetupGuestlist;

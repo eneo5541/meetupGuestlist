@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
-import App from './js/App';
+import MeetupGuestlist from './js/meetup-guestlist';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<MeetupGuestlist />, document.getElementById('root'));
