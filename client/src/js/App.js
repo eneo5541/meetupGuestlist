@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
 
+const loadAttendeesFromLocalStorage = () => {
+  const latestEvent = JSON.parse(localStorage.getItem('react-sydney-latest-event'));
+  return latestEvent ? latestEvent.attendees : [];
+}
+
 class App extends Component {
   state = {
-    currentEvent: null,
-    attendees: [],
+    currentEvent: { id: null, name: null },
+    attendees: loadAttendeesFromLocalStorage(),
     searchString: '',
   };
 
-  componentDidMount() {
-    this.updateAttendeesList();
-  }
-
   updateAttendeesList = () => {
-    fetch('/api/getNextEvent')
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ currentEvent: json });
-        return fetch(`/api/getEventAttendees/${json.id}`);
-      })
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ attendees: json, searchString: '' });
-      });
+    if(window.confirm('This will reload the current list of attendees. Are you sure you want to continue?')) {
+      fetch('/api/getNextEvent')
+        .then(res => res.json())
+        .then(json => {
+          this.setState({ currentEvent: json });
+          return fetch(`/api/getEventAttendees/${json.id}`);
+        })
+        .then(res => res.json())
+        .then(json => {
+          this.saveAttendees(json);
+          this.setState({ searchString: '' });
+        });
+    }
   }
 
   addNewAttendee = () => {
@@ -33,8 +37,17 @@ class App extends Component {
         avatar: null,
         arrived: true,
       }]);
-      this.setState({ attendees });
+      this.saveAttendees(attendees);
     }
+  }
+
+  saveAttendees = (attendees) => {
+    this.setState({ attendees });
+    localStorage.setItem('react-sydney-latest-event', JSON.stringify({
+      id: this.state.currentEvent.id,
+      name: this.state.currentEvent.name,
+      attendees,
+    }));
   }
 
   onSearch = (event) => {
@@ -48,7 +61,7 @@ class App extends Component {
 
     if (attendees[attendeeIndex].arrived !== arrived) {
       attendees[attendeeIndex].arrived = arrived;
-      this.setState({ attendees });
+      this.saveAttendees(attendees);
     }
   }
 
@@ -96,13 +109,3 @@ class App extends Component {
 }
 
 export default App;
-
-/*
-const currentEvent = JSON.parse(localStorage.getItem('react-sydney-latest-event'));
-
-    localStorage.setItem('react-sydney-latest-event', JSON.stringify({
-      id: this.state.id,
-      name: this.state.name,
-      attendees,
-    }))
-*/
