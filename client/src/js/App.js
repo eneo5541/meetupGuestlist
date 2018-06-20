@@ -28,6 +28,14 @@ class App extends Component {
     }
   }
 
+  exportAttendeesList = () => {
+    const arrivedAttendees = this.state.attendees
+      .filter(attendee => attendee.arrived)
+      .map(attendee => attendee.name);
+    const csvContent = `data:text/csv;charset=utf-8,${arrivedAttendees.join(',')}`;
+    window.open(encodeURI(csvContent));
+  }
+
   addNewAttendee = () => {
     const newAttendee = prompt("Please enter your name");
     if (newAttendee) {
@@ -65,13 +73,26 @@ class App extends Component {
     }
   }
 
+  getAttendancePercentage = () => {
+    const totalAttendees = this.state.attendees.length;
+    const arrivedAttendees = this.state.attendees.filter(attendee => attendee.arrived).length;
+    return (arrivedAttendees / totalAttendees) * 100
+  }
+
   render() {
     return (
       <div className="App">
         <h1>React Sydney</h1>
         <input type="text" onChange={event => this.onSearch(event)} placeholder="Search for an attendee" />
         <button onClick={this.updateAttendeesList}>Refresh attendees</button>
+        <button onClick={this.exportAttendeesList}>Save attendees</button>
         <button onClick={this.addNewAttendee}>Add new attendee</button>
+        <div className="attendee-capacity">
+          {this.state.attendees.filter(attendee => attendee.arrived).length} / {this.state.attendees.length}
+        </div>
+        <div className="progress-bar-container">
+          <div className="progress-bar" style={{ width: `${this.getAttendancePercentage()}%` }} />
+        </div>
         <ul>
           {this.state.attendees
             .filter(attendee => attendee.name.toLowerCase().indexOf(this.state.searchString) > -1)
