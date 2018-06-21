@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Menu from './menu';
+import Header from './header';
+import GuestList from './guestlist';
+// TODO: add proptypes
 
 const MEETUP_LOCAL_STORAGE = 'meetup-latest-event';
 
@@ -8,7 +10,7 @@ const loadObjectFromLocalStorage = (objectKey) => {
   return latestEvent ? latestEvent[objectKey] : null;
 }
 
-class MeetupGuestlist extends Component {
+class MeetupAttendance extends Component {
   state = {
     currentEvent: {
       id: loadObjectFromLocalStorage('id'),
@@ -115,42 +117,23 @@ class MeetupGuestlist extends Component {
   render() {
     return (
       <div className="App">
-        <h1>{this.state.currentEvent.name}</h1>
-        <input type="text" onChange={event => this.onSearch(event)} placeholder="Search for an attendee" />
-        <button onClick={this.addNewAttendee}>Add new attendee</button>
-        <Menu>
-          <button onClick={this.updateAttendeesList}>Refresh attendees</button>
-          <button onClick={this.downloadAttendeesList}>Download attendees</button>
-          <button onClick={this.emailAttendeesList}>Email attendees</button>
-        </Menu>
-        <div className="attendee-capacity">
-          {this.state.attendees.filter(attendee => attendee.arrived).length} / {this.state.attendees.length}
-        </div>
-        <div className="progress-bar-container">
-          <div className="progress-bar" style={{ width: `${this.getAttendancePercentage()}%` }} />
-        </div>
-        <ul>
-          {this.state.attendees
-            .filter(attendee => attendee.name.toLowerCase().indexOf(this.state.searchString) > -1)
-            .map((attendee, key) => (
-            <li key={key}>
-              <button onClick={() => { this.toggleAttendeeArrival(attendee.id, !attendee.arrived); }}>
-                <div className="avatar-container">
-                  {attendee.avatar &&
-                    <img className="avatar" alt={`Avatar of ${attendee.name}`} src={attendee.avatar} />
-                  }
-                </div>
-                <div className="name">{attendee.name}</div>
-                <span className="confirmation" role="img" aria-label={`${attendee.arrived ? 'Decline' : 'Confirm'} arrival of ${attendee.name}`}>
-                  { attendee.arrived ? '❌' : '✅' }
-                </span>
-              </button>
-            </li>
-          ))}
-        </ul>
+        <Header
+          currentEventName={this.state.currentEvent.name}
+          attendees={this.state.attendees}
+          onSearch={this.onSearch}
+          addNewAttendee={this.addNewAttendee}
+          updateAttendeesList={this.updateAttendeesList}
+          downloadAttendeesList={this.downloadAttendeesList}
+          emailAttendeesList={this.emailAttendeesList}
+        />
+        <GuestList
+          attendees={this.state.attendees}
+          searchString={this.state.searchString}
+          toggleAttendeeArrival={this.toggleAttendeeArrival}
+        />
       </div>
     );
   }
 }
 
-export default MeetupGuestlist;
+export default MeetupAttendance;
