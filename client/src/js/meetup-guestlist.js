@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Menu from './menu';
 
 const loadObjectFromLocalStorage = (objectKey) => {
   const latestEvent = JSON.parse(localStorage.getItem('react-sydney-latest-event'));
@@ -113,10 +114,12 @@ class MeetupGuestlist extends Component {
       <div className="App">
         <h1>React Sydney</h1>
         <input type="text" onChange={event => this.onSearch(event)} placeholder="Search for an attendee" />
-        <button onClick={this.updateAttendeesList}>Refresh attendees</button>
-        <button onClick={this.downloadAttendeesList}>Download attendees</button>
-        <button onClick={this.emailAttendeesList}>Email attendees</button>
         <button onClick={this.addNewAttendee}>Add new attendee</button>
+        <Menu>
+          <button onClick={this.updateAttendeesList}>Refresh attendees</button>
+          <button onClick={this.downloadAttendeesList}>Download attendees</button>
+          <button onClick={this.emailAttendeesList}>Email attendees</button>
+        </Menu>
         <div className="attendee-capacity">
           {this.state.attendees.filter(attendee => attendee.arrived).length} / {this.state.attendees.length}
         </div>

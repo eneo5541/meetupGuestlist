@@ -50,7 +50,6 @@ app.post('/api/sendEmailEventAttendees', function (req, res) {
       pass: process.env.MEETUP_EMAIL_PASS,
     }
   });
-
   const mailOptions = {
     from: process.env.MEETUP_EMAIL,
     to: req.body.emailRecipient,
