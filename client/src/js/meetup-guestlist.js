@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 
-const loadAttendeesFromLocalStorage = () => {
+const loadObjectFromLocalStorage = (objectKey) => {
   const latestEvent = JSON.parse(localStorage.getItem('react-sydney-latest-event'));
-  return latestEvent ? latestEvent.attendees : [];
+  return latestEvent ? latestEvent[objectKey] : null;
 }
 
 class MeetupGuestlist extends Component {
   state = {
-    currentEvent: { id: null, name: null },
-    attendees: loadAttendeesFromLocalStorage(),
+    currentEvent: {
+      id: loadObjectFromLocalStorage('id'),
+      name: loadObjectFromLocalStorage('name'),
+    },
+    attendees: loadObjectFromLocalStorage('attendees') || [],
     searchString: '',
   };
 
@@ -28,7 +31,7 @@ class MeetupGuestlist extends Component {
     }
   }
 
-  exportAttendeesList = () => {
+  downloadAttendeesList = () => {
     const arrivedAttendees = this.state.attendees
       .filter(attendee => attendee.arrived)
       .map(attendee => attendee.name);
@@ -36,8 +39,34 @@ class MeetupGuestlist extends Component {
     window.open(encodeURI(csvContent));
   }
 
+  emailAttendeesList = () => {
+    const emailRecipient = window.prompt('Which email should we send the guestlist to?');
+    if (emailRecipient) {
+      const arrivedAttendees = this.state.attendees
+        .filter(attendee => attendee.arrived)
+        .map(attendee => attendee.name);
+      fetch('/api/sendEmailEventAttendees', {
+        body: JSON.stringify({
+          currentEvent: this.state.currentEvent.name,
+          arrivedAttendees,
+          emailRecipient,
+        }),
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'user-agent': 'Mozilla/4.0 MDN Example',
+          'content-type': 'application/json'
+        },
+        method: 'POST',
+        mode: 'cors',
+        redirect: 'follow',
+        referrer: 'no-referrer',
+      });
+    }
+  }
+
   addNewAttendee = () => {
-    const newAttendee = prompt("Please enter your name");
+    const newAttendee = window.prompt('Please enter your name');
     if (newAttendee) {
       const attendees = this.state.attendees.concat([{
         id: `${newAttendee}-${Date.now()}`,
@@ -85,7 +114,8 @@ class MeetupGuestlist extends Component {
         <h1>React Sydney</h1>
         <input type="text" onChange={event => this.onSearch(event)} placeholder="Search for an attendee" />
         <button onClick={this.updateAttendeesList}>Refresh attendees</button>
-        <button onClick={this.exportAttendeesList}>Save attendees</button>
+        <button onClick={this.downloadAttendeesList}>Download attendees</button>
+        <button onClick={this.emailAttendeesList}>Email attendees</button>
         <button onClick={this.addNewAttendee}>Add new attendee</button>
         <div className="attendee-capacity">
           {this.state.attendees.filter(attendee => attendee.arrived).length} / {this.state.attendees.length}
