@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Menu from './menu';
 
+const MEETUP_LOCAL_STORAGE = 'meetup-latest-event';
+
 const loadObjectFromLocalStorage = (objectKey) => {
-  const latestEvent = JSON.parse(localStorage.getItem('react-sydney-latest-event'));
+  const latestEvent = JSON.parse(localStorage.getItem(MEETUP_LOCAL_STORAGE));
   return latestEvent ? latestEvent[objectKey] : null;
 }
 
@@ -11,6 +13,7 @@ class MeetupGuestlist extends Component {
     currentEvent: {
       id: loadObjectFromLocalStorage('id'),
       name: loadObjectFromLocalStorage('name'),
+      group: loadObjectFromLocalStorage('group'),
     },
     attendees: loadObjectFromLocalStorage('attendees') || [],
     searchString: '',
@@ -81,7 +84,7 @@ class MeetupGuestlist extends Component {
 
   saveAttendees = (attendees) => {
     this.setState({ attendees });
-    localStorage.setItem('react-sydney-latest-event', JSON.stringify({
+    localStorage.setItem(MEETUP_LOCAL_STORAGE, JSON.stringify({
       id: this.state.currentEvent.id,
       name: this.state.currentEvent.name,
       attendees,
@@ -112,7 +115,7 @@ class MeetupGuestlist extends Component {
   render() {
     return (
       <div className="App">
-        <h1>React Sydney</h1>
+        <h1>{this.state.currentEvent.name}</h1>
         <input type="text" onChange={event => this.onSearch(event)} placeholder="Search for an attendee" />
         <button onClick={this.addNewAttendee}>Add new attendee</button>
         <Menu>

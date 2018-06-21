@@ -1,8 +1,8 @@
 {
-  "name": "meetup_test_server",
+  "name": "meetup_attendance_server",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && yarn start",
+    "client": "cd client && yarn install && yarn start",
     "server": "nodemon server.js",
     "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },

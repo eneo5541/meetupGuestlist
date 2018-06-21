@@ -1,1 +1,1 @@
-A checklist app that will return a list of everyone who has RSVP'd to the latest React-Sydney meetup event.
+A checklist app that will return a list of everyone who has RSVP'd to the latest event of a Meetup group.

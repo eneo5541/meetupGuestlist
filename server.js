@@ -15,9 +15,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/api/getNextEvent', (req, res) => {
-  meetupApi.getGroup({ urlname: 'React-Sydney' }, (err, resp) => {
+  meetupApi.getGroup({ urlname: process.env.MEETUP_NAME }, (err, resp) => {
     if (resp && resp.next_event) {
-      res.send({ ...resp.next_event });
+      res.send({
+        group: resp.name,
+        ...resp.next_event
+      });
     } else {
       res.send({ error: 'Could not get next event data' });
     }
