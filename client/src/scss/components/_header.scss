@@ -39,7 +39,7 @@
   padding-right: $single-spacing;
 
   @include tableOrLarger {
-    text-align: right;
+    text-align: left;
   }
 }
 
