@@ -31,7 +31,7 @@ const Header = (props) => {
           className="attendance-header__add_guest_button"
           onClick={props.addNewAttendee}
         >
-          Add new guest
+          <span className="attendance-header__button-label">Add new guest</span>
         </button>
       </div>
       <ProgressBar percentage={getAttendance(true)} />

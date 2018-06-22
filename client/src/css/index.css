@@ -35,8 +35,11 @@ button:focus{
   border-width: 0 0 1px 0;
   border-style: solid;
   border-color: #e2e2e2;
-  padding-bottom: 24px;
+  padding: 0 70px 24px 24px;
   margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .attendance-header__searchbar {
@@ -49,25 +52,57 @@ button:focus{
 .attendance-header__search {
   flex-grow: 1;
   line-height: 32px;
-  text-align: right;
+  text-align: center;
   border-width: 1px;
   border-style: solid;
   border-color: #e2e2e2;
   border-radius: 5px;
   font-size: 18px;
-  margin: 0 24px;
+  margin-right: 24px;
   padding-right: 12px;
 }
 
 .attendance-header__capacity {
   padding: 12px 0;
   font-size: 18px;
+  display: none;
+  margin-right: 24px;
+}
+
+.attendance-header__button-label {
+  display: none;
 }
 
 .attendance-header__add_guest_button {
   height: 36px;
-  width: 170px;
+  width: 50px;
   font-size: 18px;
+}
+
+.attendance-header__add_guest_button::before {
+  content: "\002B";
+}
+
+@media only screen and (min-width: 640px) {
+  .attendance-header__capacity {
+    display: block;
+  }
+
+  .attendance-header__button-label {
+    display: inline;
+  }
+
+  .attendance-header__search {
+    text-align: right;
+  }
+
+  .attendance-header__add_guest_button {
+    width: 170px;
+  }
+
+  .attendance-header__add_guest_button::before {
+    content: "";
+  }
 }
 
 .attendance-progress-bar {
