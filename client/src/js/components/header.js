@@ -26,7 +26,7 @@ const Header = (props) => {
           className="attendance-header__search"
           type="text"
           onChange={props.onSearch}
-          placeholder="Search for an attendee"
+          placeholder="Search for a guest"
         />
         <button
           className="attendance-header__add_guest_button"
