@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import classnames from 'classnames'
+import hamburger from '../assets/hamburger2.png';
 
 class Menu extends Component {
   state = {
@@ -12,21 +14,17 @@ class Menu extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.showMenu}>
-          Show menu
+      <div className="attendance-menu">
+        <button className="attendance-menu__button" onClick={this.showMenu}>
+          <img
+            src={hamburger}
+            className="attendance-menu__icon"
+            alt="Drop down menu"
+          />
         </button>
-        
-        {this.state.showMenu ?
-          (
-            <div className="menu">
-              {this.props.children}
-            </div>
-          ):
-          (
-            null
-          )
-        }
+        <div className={classnames('attendance-menu__contents', {[`display-contents`]: this.state.showMenu })}>
+          {this.props.children}
+        </div>
       </div>
     );
   }

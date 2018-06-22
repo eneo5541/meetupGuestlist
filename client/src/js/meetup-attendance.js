@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './header';
 import GuestList from './guestlist';
 // TODO: add proptypes
+// TODO: add sass
 
 const MEETUP_LOCAL_STORAGE = 'meetup-latest-event';
 
