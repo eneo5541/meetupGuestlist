@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/index.css';
-import MeetupAttendance from './js/meetup-attendance';
+import './scss/index.css';
+import Attendance from './js/attendance';
 
-ReactDOM.render(<MeetupAttendance />, document.getElementById('root'));
+ReactDOM.render(<Attendance />, document.getElementById('root'));

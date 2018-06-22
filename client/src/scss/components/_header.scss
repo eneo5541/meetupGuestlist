@@ -1,0 +1,83 @@
+.attendance-header {
+  width: 100%;
+  height: 150px;
+  background-color: $button-background-color;
+  position: fixed;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.attendance-header__title {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: $button-outline-color;
+  padding: 0 70px $double-spacing $double-spacing;
+  margin-bottom: $single-spacing;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.attendance-header__searchbar {
+  display: flex;
+  align-items: center;
+  padding: 0 $double-spacing;
+  margin-bottom: $single-spacing;
+}
+
+.attendance-header__search {
+  flex-grow: 1;
+  line-height: 32px;
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $button-outline-color;
+  border-radius: 5px;
+  font-size: $medium-font-size;
+  margin-right: $double-spacing;
+  padding-right: $single-spacing;
+
+  @include tableOrLarger {
+    text-align: right;
+  }
+}
+
+.attendance-header__capacity {
+  padding: $single-spacing 0;
+  font-size: $medium-font-size;
+  display: none;
+  margin-right: $double-spacing;
+
+  @include tableOrLarger {
+    display: block;
+  }
+}
+
+.attendance-header__button-label {
+  display: none;
+
+  @include tableOrLarger {
+    display: inline;
+  }
+}
+
+.attendance-header__add_guest_button {
+  @include meetupButton;
+
+  height: 36px;
+  width: 50px;
+  font-size: $medium-font-size;
+
+  &:before {
+    content: "\002B";
+  }
+
+  @include tableOrLarger {
+    width: 170px;
+
+    &:before {
+      content: "";
+    }
+  }
+}

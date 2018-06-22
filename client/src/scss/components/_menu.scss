@@ -1,0 +1,49 @@
+.attendance-menu {
+  position: absolute;
+  top: 20px;
+  right: $double-spacing;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.attendance-menu__button {
+  @include meetupButton;
+
+  background: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.attendance-menu__icon {
+  width: 100%;
+}
+
+.attendance-menu__contents {
+  display: none;
+  width: 200px;
+  height: 120px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $button-outline-color;
+  border-radius: 5px;
+
+  &.display-contents {
+    display: flex;
+    flex-direction: column;
+    margin-top: $single-spacing;
+    background-color: $button-background-color;
+  }
+
+  button {
+    @include meetupButton;
+
+    background: 0;
+    flex-grow: 1;
+    font-size: $small-font-size;
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+  }
+}

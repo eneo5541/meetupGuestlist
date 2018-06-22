@@ -1,0 +1,16 @@
+.attendance-progress-bar {
+  text-align: left;
+}
+
+.attendance-progress-bar__container {
+  width: 100%;
+  height: 6px;
+  background-color: $button-focus-color;
+}
+
+.attendance-progress-bar__bar {
+  background-color: $progress-bar-green;
+  height: 100%;
+  transition: width 2s;
+  will-change: transform;
+}

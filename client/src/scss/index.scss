@@ -1,0 +1,12 @@
+@import 'variables';
+@import 'components/guest';
+@import 'components/guestlist';
+@import 'components/header';
+@import 'components/menu';
+@import 'components/progress-bar';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}

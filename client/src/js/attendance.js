@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/header';
 import GuestList from './components/guestlist';
-// TODO: add sass
 
 const MEETUP_LOCAL_STORAGE = 'meetup-latest-event';
 
@@ -10,7 +9,7 @@ const loadObjectFromLocalStorage = (objectKey) => {
   return latestEvent ? latestEvent[objectKey] : null;
 }
 
-class MeetupAttendance extends Component {
+class Attendance extends Component {
   state = {
     currentEvent: {
       id: loadObjectFromLocalStorage('id'),
@@ -110,7 +109,7 @@ class MeetupAttendance extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="attendance">
         <Header
           currentEventName={this.state.currentEvent.name}
           attendees={this.state.attendees}
@@ -130,4 +129,4 @@ class MeetupAttendance extends Component {
   }
 }
 
-export default MeetupAttendance;
+export default Attendance;

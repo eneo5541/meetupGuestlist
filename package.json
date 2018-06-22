@@ -2,9 +2,9 @@
   "name": "meetup_attendance_server",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && yarn install && yarn start",
+    "client": "cd client && yarn install && yarn start-react",
     "server": "nodemon server.js",
-    "start": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "start": "yarn server & yarn client"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -14,8 +14,5 @@
     "meetup-api": "^1.4.32",
     "node-fetch": "^2.1.2",
     "nodemailer": "^4.6.7"
-  },
-  "devDependencies": {
-    "concurrently": "^3.5.0"
   }
 }

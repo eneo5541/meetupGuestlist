@@ -1,0 +1,37 @@
+$button-background-color: #fff;
+$button-hover-color: #f2f2f2;
+$button-focus-color: #e2e2e2;
+$button-outline-color: #cccccc;
+$progress-bar-green: #85D262;
+$guest-arrived-blue: #d6e6ff;
+$guest-hover-blue: #e5efff;
+
+$single-spacing: 12px;
+$double-spacing: 24px;
+
+$small-font-size: 16px;
+$medium-font-size: 18px;
+$large-font-size: 20px;
+
+@mixin tableOrLarger {
+  @media only screen and (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin meetupButton {
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $button-outline-color;
+  border-radius: 5px;
+  align-items: center;
+
+  &:hover{
+    background-color: $button-hover-color;
+  }
+
+  &:focus{
+    background-color: $button-focus-color;
+  }
+}
