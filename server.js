@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 
 app.get('/api/getNextEvent', (req, res) => {
   meetupApi.getGroup({ urlname: process.env.MEETUP_NAME }, (err, resp) => {
-    console.log(resp);
     if (resp && resp.next_event) {
       res.send({
         group: resp.name,
