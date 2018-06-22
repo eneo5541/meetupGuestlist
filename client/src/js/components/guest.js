@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames'
 import tick from '../../assets/tick.png';
+import person from '../../assets/person.png';
 
 const Guest = (props) => (
   <li>
@@ -10,9 +11,7 @@ const Guest = (props) => (
       onClick={() => { props.toggleAttendeeArrival(props.id, !props.arrived); }}
     >
       <div className="attendance-guest__avatar-container">
-        {props.avatar &&
-          <img className="attendance-guest__avatar" alt={`Avatar of ${props.name}`} src={props.avatar} />
-        }
+        <img className="attendance-guest__avatar" alt={`Avatar of ${props.name}`} src={props.avatar || person} />
       </div>
       <div className="attendance-guest__name">{props.name}</div>
       <div className="attendance-guest__confirmation-container">

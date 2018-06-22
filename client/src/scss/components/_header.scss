@@ -36,10 +36,10 @@
   border-radius: 5px;
   font-size: $medium-font-size;
   margin-right: $double-spacing;
-  padding-right: $single-spacing;
 
   @include tableOrLarger {
     text-align: left;
+    padding-left: $single-spacing;
   }
 }
 

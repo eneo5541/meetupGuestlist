@@ -13,11 +13,6 @@ const Header = (props) => {
   return (
     <div className="attendance-header">
       <h1 className="attendance-header__title">{props.currentEventName}</h1>
-      <Menu>
-        <button onClick={props.updateAttendeesList}>Refresh guest list</button>
-        <button onClick={props.downloadAttendeesList}>Download attendees</button>
-        <button onClick={props.emailAttendeesList}>Email attendees</button>
-      </Menu>
       <div className="attendance-header__searchbar">
         <div className="attendance-header__capacity">
           {`Guests: ${getAttendance()}`}
@@ -36,6 +31,11 @@ const Header = (props) => {
         </button>
       </div>
       <ProgressBar percentage={getAttendance(true)} />
+      <Menu>
+        <button onClick={props.updateAttendeesList}>Refresh guest list</button>
+        <button onClick={props.downloadAttendeesList}>Download attendees</button>
+        <button onClick={props.emailAttendeesList}>Email attendees</button>
+      </Menu>
     </div>
   );
 }
