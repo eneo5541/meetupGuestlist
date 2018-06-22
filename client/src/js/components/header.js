@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Menu from './menu';
 import ProgressBar from './progress-bar';
 
@@ -37,6 +38,26 @@ const Header = (props) => {
       <ProgressBar percentage={getAttendance(true)} />
     </div>
   );
+}
+
+Header.propTypes = {
+  attendees: PropTypes.array,
+  currentEventName: PropTypes.string,
+  updateAttendeesList: PropTypes.func,
+  downloadAttendeesList: PropTypes.func,
+  emailAttendeesList: PropTypes.func,
+  onSearch: PropTypes.func,
+  addNewAttendee: PropTypes.func,
+};
+
+Header.defaultProps = {
+  attendees: [],
+  currentEventName: '',
+  updateAttendeesList: () => {},
+  downloadAttendeesList: () => {},
+  emailAttendeesList: () => {},
+  onSearch: () => {},
+  addNewAttendee: () => {},
 }
 
 export default Header;

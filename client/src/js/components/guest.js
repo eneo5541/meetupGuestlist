@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames'
-import tick from '../assets/tick.png';
+import tick from '../../assets/tick.png';
 
 const Guest = (props) => (
   <li>
@@ -24,5 +25,17 @@ const Guest = (props) => (
     </button>
   </li>
 );
+
+Guest.propTypes = {
+  arrived: PropTypes.boolean,
+  id: PropTypes.number.isRequired,
+  avatar: PropTypes.string,
+  name: PropTypes.string.isRequired,
+};
+
+Guest.defaultProps = {
+  arrived: false,
+  avatar: null,
+}
 
 export default Guest;

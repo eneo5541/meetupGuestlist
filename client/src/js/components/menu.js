@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames'
-import hamburger from '../assets/hamburger2.png';
+import hamburger from '../../assets/hamburger.png';
 
 class Menu extends Component {
   state = {
@@ -28,6 +29,14 @@ class Menu extends Component {
       </div>
     );
   }
+}
+
+Menu.propTypes = {
+  children: PropTypes.object,
+};
+
+Menu.defaultProps = {
+  children: null,
 }
 
 export default Menu;

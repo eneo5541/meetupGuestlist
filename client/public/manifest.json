@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Meetup Guestlist",
+  "name": "Meetup Guestlist",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Header from './header';
-import GuestList from './guestlist';
-// TODO: add proptypes
+import Header from './components/header';
+import GuestList from './components/guestlist';
 // TODO: add sass
 
 const MEETUP_LOCAL_STORAGE = 'meetup-latest-event';
@@ -107,12 +106,6 @@ class MeetupAttendance extends Component {
       attendees[attendeeIndex].arrived = arrived;
       this.saveAttendees(attendees);
     }
-  }
-
-  getAttendancePercentage = () => {
-    const totalAttendees = this.state.attendees.length;
-    const arrivedAttendees = this.state.attendees.filter(attendee => attendee.arrived).length;
-    return (arrivedAttendees / totalAttendees) * 100
   }
 
   render() {
