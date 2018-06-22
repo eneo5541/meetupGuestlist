@@ -1,5 +1,5 @@
 {
-  "name": "meetup_attendance",
+  "name": "meetup_guestlist",
   "version": "1.0.0",
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

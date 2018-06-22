@@ -1,5 +1,5 @@
 {
-  "name": "meetup_attendance_server",
+  "name": "meetup_guestlist_server",
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn install && yarn start-react",
