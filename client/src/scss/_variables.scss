@@ -26,6 +26,7 @@ $large-font-size: 20px;
   border-color: $button-outline-color;
   border-radius: 5px;
   align-items: center;
+  background-color: $button-background-color;
 
   &:hover{
     background-color: $button-hover-color;
