@@ -15,7 +15,7 @@ const Guestlist = (props) => (
 
 Guestlist.propTypes = {
   attendees: PropTypes.array,
-  searchString: PropTypes.number,
+  searchString: PropTypes.string,
   toggleAttendeeArrival: PropTypes.func,
 };
 

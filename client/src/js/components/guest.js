@@ -26,8 +26,8 @@ const Guest = (props) => (
 );
 
 Guest.propTypes = {
-  arrived: PropTypes.boolean,
-  id: PropTypes.number.isRequired,
+  arrived: PropTypes.bool,
+  id: PropTypes.string.isRequired,
   avatar: PropTypes.string,
   name: PropTypes.string.isRequired,
 };

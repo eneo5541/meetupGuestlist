@@ -33,7 +33,7 @@ app.get('/api/getEventAttendees/:eventId', (req, res) => {
       const attendees = resp.results
       .filter(attendee => attendee.response === 'yes' || attendee.response === 'wailist')
       .map((attendee) => ({
-        id: attendee.member.member_id,
+        id: attendee.member.member_id.toString(),
         name: attendee.member.name,
         avatar: attendee.member_photo ? attendee.member_photo.thumb_link : null,
         arrived: false,

@@ -32,7 +32,7 @@ class Menu extends Component {
 }
 
 Menu.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.array,
 };
 
 Menu.defaultProps = {
