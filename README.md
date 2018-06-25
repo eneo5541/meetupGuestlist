@@ -25,3 +25,10 @@ yarn start
 ```
 
 This will start the node server, install the React component's dependencies, start React and start Sass
+
+
+If you don't need to refresh the guestlist (the guestlist is saved to localstorage each time it is refreshed) or send the guestlist via email, you can run the app locally without node
+```base
+cd client
+yarn start
+```
