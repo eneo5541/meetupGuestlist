@@ -40,7 +40,7 @@ app.get('/api/getEventAttendees/:eventId', (req, res) => {
   meetupApi.getRSVPs({ event_id: req.params.eventId }, (err, resp) => {
     if (resp) {
       const attendees = resp.results
-      .filter(attendee => attendee.response === 'yes' || attendee.response === 'wailist')
+      .filter(attendee => attendee.response === 'yes' || attendee.response === 'waitlist')
       .map((attendee) => ({
         id: attendee.member.member_id.toString(),
         name: attendee.member.name,
