@@ -25,6 +25,9 @@ class Attendance extends Component {
       fetch('/api/getNextEvent')
         .then(res => res.json())
         .then(json => {
+          if (json.error) {
+            return Promise.reject(json.error);
+          }
           this.setState({ currentEvent: json });
           return fetch(`/api/getEventAttendees/${json.id}`);
         })
@@ -32,7 +35,8 @@ class Attendance extends Component {
         .then(json => {
           this.saveAttendees(json);
           this.setState({ searchString: '' });
-        });
+        })
+        .catch(error => console.error(error));
     }
   }
 
