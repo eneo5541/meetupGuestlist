@@ -9,14 +9,19 @@
   display: flex;
 
   &.has-arrived {
-    background-color: $guest-arrived-blue;
+    background-color: $progress-bar-green;
 
     .attendance-guest__confirmation {
       display: block;
     }
 
+    .attendance-guest__name-status {
+      color: $button-font-color;
+      text-transform: uppercase;
+    }
+
     &:hover {
-      background-color: $guest-hover-blue;
+      opacity: 0.7;
     }
   }
 }
@@ -37,6 +42,10 @@
   flex-grow: 1;
   font-size: $large-font-size;
   text-transform: capitalize;
+}
+
+.attendance-guest__name-status {
+  color: $guest-grey;
 }
 
 .attendance-guest__confirmation-container {
