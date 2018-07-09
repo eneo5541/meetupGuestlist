@@ -13,7 +13,10 @@ const Guest = (props) => (
       <div className="attendance-guest__avatar-container">
         <img className="attendance-guest__avatar" alt={`Avatar of ${props.name}`} src={props.avatar || person} />
       </div>
-      <div className="attendance-guest__name">{props.name}</div>
+      <div className="attendance-guest__name">
+        {props.name} -
+        <span className="attendance-guest__name-status">{props.arrived ? ' Arrived!' : ' Click to check in!'}</span>
+      </div>
       <div className="attendance-guest__confirmation-container">
         <img
           src={tick}

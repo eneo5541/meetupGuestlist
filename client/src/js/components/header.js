@@ -21,13 +21,14 @@ const Header = (props) => {
           className="attendance-header__search"
           type="text"
           onChange={props.onSearch}
+          value={props.searchString}
           placeholder="Search for a guest"
         />
         <button
           className="attendance-header__add_guest_button"
           onClick={props.addNewAttendee}
         >
-          <span className="attendance-header__button-label">Add new guest</span>
+          <span className="attendance-header__button-label">Click here if you're not on the guestlist!</span>
         </button>
       </div>
       <ProgressBar percentage={getAttendance(true)} />
@@ -48,6 +49,7 @@ Header.propTypes = {
   emailAttendeesList: PropTypes.func,
   onSearch: PropTypes.func,
   addNewAttendee: PropTypes.func,
+  searchString: PropTypes.string,
 };
 
 Header.defaultProps = {
@@ -58,6 +60,7 @@ Header.defaultProps = {
   emailAttendeesList: () => {},
   onSearch: () => {},
   addNewAttendee: () => {},
+  searchString: '',
 }
 
 export default Header;

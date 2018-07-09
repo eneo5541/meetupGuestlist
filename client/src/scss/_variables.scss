@@ -5,13 +5,17 @@ $button-outline-color: #cccccc;
 $progress-bar-green: #85D262;
 $guest-arrived-blue: #d6e6ff;
 $guest-hover-blue: #e5efff;
+$guest-grey: #686868;
+$button-font-color: #000;
 
 $single-spacing: 12px;
 $double-spacing: 24px;
 
 $small-font-size: 16px;
 $medium-font-size: 18px;
-$large-font-size: 20px;
+$large-font-size: 22px;
+
+$header-height: 186px;
 
 @mixin tableOrLarger {
   @media only screen and (min-width: 640px) {

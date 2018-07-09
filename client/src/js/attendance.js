@@ -109,6 +109,8 @@ class Attendance extends Component {
       attendees[attendeeIndex].arrived = arrived;
       this.saveAttendees(attendees);
     }
+
+    this.setState({ searchString: '' });
   }
 
   render() {
@@ -118,6 +120,7 @@ class Attendance extends Component {
           currentEventName={this.state.currentEvent.name}
           attendees={this.state.attendees}
           onSearch={this.onSearch}
+          searchString={this.state.searchString}
           addNewAttendee={this.addNewAttendee}
           updateAttendeesList={this.updateAttendeesList}
           downloadAttendeesList={this.downloadAttendeesList}

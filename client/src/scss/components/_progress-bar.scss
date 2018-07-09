@@ -11,6 +11,6 @@
 .attendance-progress-bar__bar {
   background-color: $progress-bar-green;
   height: 100%;
-  transition: width 2s;
+  transition: width 0.5s;
   will-change: transform;
 }
