@@ -113,6 +113,14 @@ class Attendance extends Component {
     this.setState({ searchString: '' });
   }
 
+  addContactGuest = (attendeeId, contactInfo) => {
+    const attendees = this.state.attendees;
+    const attendeeIndex = attendees.findIndex(attendee => attendee.id === attendeeId);
+
+    attendees[attendeeIndex].contact = contactInfo;
+    this.saveAttendees(attendees);
+  }
+
   render() {
     return (
       <div className="attendance">
@@ -130,6 +138,7 @@ class Attendance extends Component {
           attendees={this.state.attendees}
           searchString={this.state.searchString}
           toggleAttendeeArrival={this.toggleAttendeeArrival}
+          addContactGuest={this.addContactGuest}
         />
       </div>
     );

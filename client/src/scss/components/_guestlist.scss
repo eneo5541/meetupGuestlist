@@ -1,5 +1,6 @@
 .attendance-guestlist {
   list-style-type: none;
   padding: $header-height 0 0 0;
-  margin: 0;
+  margin: 0 auto;
+  max-width: $width-list;
 }
