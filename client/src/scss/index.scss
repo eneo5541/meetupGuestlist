@@ -4,9 +4,11 @@
 @import 'components/header';
 @import 'components/menu';
 @import 'components/progress-bar';
+@import 'components/contact';
 
 body {
+  background-color: $color-light-grey;
+  font-family: sans-serif;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }

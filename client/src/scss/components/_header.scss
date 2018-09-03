@@ -67,6 +67,7 @@
 .attendance-header__add_guest_button {
   @include meetupButton;
 
+  color: $color-white;
   height: 50px;
   width: 50px;
   font-size: $large-font-size;

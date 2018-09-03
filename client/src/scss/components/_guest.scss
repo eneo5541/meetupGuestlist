@@ -1,29 +1,53 @@
 .attendance-guest {
-  @include meetupButton;
-
+  background-color: $color-white;
   width: 100%;
-  border-width: 0 0 1px 0;
-  border-radius: 0;
   height: 70px;
-  padding: 0 $double-spacing;
+  padding-left: $single-spacing;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $color-mid-grey;
 
   &.has-arrived {
-    background-color: $progress-bar-green;
+    background-color: $color-light-grey;
 
     .attendance-guest__confirmation {
       display: block;
-    }
-
-    .attendance-guest__name-status {
-      color: $button-font-color;
-      text-transform: uppercase;
     }
 
     &:hover {
       opacity: 0.7;
     }
   }
+}
+
+.attendance-guest__check-in {
+  height: 100%;
+
+  .attendance-guest__check-in-button {
+    @include meetupButton;
+
+    color: $color-white;
+    height: 100%;
+    font-size: 1.25em;
+    padding: 0 $single-spacing;
+
+    &.has-arrived {
+      background-color: $color-light-grey;
+      color: $button-focus-color;
+    }
+  }
+
+  .attendance-guest__name-status {
+    text-transform: uppercase;
+    color: inherit;
+  }
+
+}
+
+.attendance-guest__details {
+  flex: 2 1 auto;
+  padding-left: $single-spacing;
 }
 
 .attendance-guest__avatar-container {

@@ -1,0 +1,30 @@
+.attendance-guest__contact {
+  padding: $double-spacing;
+  background-color: #fafafa;
+  width: 94%;
+}
+
+.attendance-guest__contact-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.attendance-guest__contact-option {
+  flex: 2 1 auto;
+}
+
+.attendance-guest__contact-detail-input{
+  margin: $single-spacing 0;
+  padding: $single-spacing;
+  width: 80%;
+}
+
+.attendance-guest__contact-button {
+  @include meetupButton;
+
+  color: $color-white;
+  margin-bottom: $single-spacing;
+  padding: $single-spacing;
+  align-self: flex-end;
+}

@@ -8,6 +8,11 @@ $guest-hover-blue: #e5efff;
 $guest-grey: #686868;
 $button-font-color: #000;
 
+$highlight-color-green: #0ea800;
+$color-light-grey: #f7f7f7;
+$color-mid-grey: #f2edee;
+$color-white: #fff;
+
 $single-spacing: 12px;
 $double-spacing: 24px;
 
@@ -17,6 +22,8 @@ $large-font-size: 22px;
 
 $header-height: 186px;
 
+$width-list: 600px;
+
 @mixin tableOrLarger {
   @media only screen and (min-width: 640px) {
     @content;
@@ -25,15 +32,15 @@ $header-height: 186px;
 
 @mixin meetupButton {
   cursor: pointer;
-  border-width: 1px;
-  border-style: solid;
-  border-color: $button-outline-color;
-  border-radius: 5px;
+  border: 0;
   align-items: center;
-  background-color: $button-background-color;
+  background-color: $highlight-color-green;
+  height: 100%;
+  color: $button-outline-color;
 
   &:hover{
-    background-color: $button-hover-color;
+    filter: brightness(85%);
+    color: $color-white;
   }
 
   &:focus{
