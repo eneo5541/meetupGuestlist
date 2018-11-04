@@ -6,3 +6,4 @@ All notable changes to this project will be documented in this file.
 - Reset the search bar whenever a guest checks in
 - Improving call-to-action for new guest button
 - Increase header size to improve visibility
+- Added opt in options 

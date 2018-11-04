@@ -32,7 +32,7 @@ class ContactGuest extends React.Component {
               name="contact"
               placeholder={`Enter your ${this.state.preference}`}
               type={this.state.preference === 'mobile' ? 'text' : 'email' }
-              pattern={this.state.preference === 'mobile' ? '[0-9]{10}' : ''}
+              pattern={this.state.preference === 'mobile' && '[0-9]{10}' }
               onChange={this.handleDetailsChange}
               required
             />
