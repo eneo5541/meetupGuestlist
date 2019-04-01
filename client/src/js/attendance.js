@@ -15,10 +15,35 @@ class Attendance extends Component {
       id: loadObjectFromLocalStorage('id'),
       name: loadObjectFromLocalStorage('name'),
       group: loadObjectFromLocalStorage('group'),
+      time: loadObjectFromLocalStorage('time'),
+      utc_offset: loadObjectFromLocalStorage('utc_offset'),
+      yes_rsvp_count: loadObjectFromLocalStorage('yes_rsvp_count'),
     },
     attendees: loadObjectFromLocalStorage('attendees') || [],
     searchString: '',
   };
+
+  componentDidMount() {
+    fetch('/api/getNextEvent')
+      .then(res => res.json())
+      .then(json => {
+        if (json.error) {
+          return Promise.reject(json.error);
+        }
+        if (!this.state.currentEvent.time || json.time > this.state.currentEvent.time) {
+          this.promptUpdateAttendeesList(json);
+        }
+      })
+  }
+
+  promptUpdateAttendeesList = (currentEvent) => {
+    if(
+      window.confirm(`Your event is for ${new Date(this.state.currentEvent.time).toLocaleString('en-AU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}, would you like to update attendees for the latest event on ${new Date(currentEvent.time).toLocaleString('en-AU', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}?`)
+    ) {
+      this.setState({ currentEvent });
+      this.fetchNewAttendees(currentEvent.id);
+    }
+  }
 
   updateAttendeesList = () => {
     if(window.confirm('This will reload the current list of attendees. Are you sure you want to continue?')) {
@@ -29,16 +54,19 @@ class Attendance extends Component {
             return Promise.reject(json.error);
           }
           this.setState({ currentEvent: json });
-          return fetch(`/api/getEventAttendees/${json.id}`);
-        })
-        .then(res => res.json())
-        .then(json => {
-          this.saveAttendees(json);
-          this.setState({ searchString: '' });
-        })
-        .catch(error => console.error(error));
+          return this.fetchNewAttendees(json.id);
+        });
     }
   }
+
+  fetchNewAttendees = (eventId) =>
+    fetch(`/api/getEventAttendees/${eventId}`)
+      .then(res => res.json())
+      .then(json => {
+        this.saveAttendees(json);
+        this.setState({ searchString: '' });
+      })
+      .catch(error => console.error(error));
 
   downloadAttendeesList = () => {
     const arrivedAttendees = this.state.attendees
@@ -90,8 +118,7 @@ class Attendance extends Component {
   saveAttendees = (attendees) => {
     this.setState({ attendees });
     localStorage.setItem(MEETUP_LOCAL_STORAGE, JSON.stringify({
-      id: this.state.currentEvent.id,
-      name: this.state.currentEvent.name,
+      ...this.state.currentEvent,
       attendees,
     }));
   }
