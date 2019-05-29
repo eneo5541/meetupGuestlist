@@ -4,16 +4,22 @@
   "scripts": {
     "client": "cd client && yarn install && yarn start-react",
     "server": "nodemon src/server.js",
-    "start": "yarn server & yarn client"
+    "build": "babel ./src/server.js -d dist",
+    "start": "npm run build && nodemon dist/server.js"
   },
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^6.0.0",
-    "express": "^4.16.2",
+    "express": "^4.17.1",
     "meetup-api": "^1.4.32",
     "node-fetch": "^2.1.2",
     "nodemailer": "^4.6.7",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "react-redux": "^7.0.3"
   }
 }

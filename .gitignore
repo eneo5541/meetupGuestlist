@@ -5,5 +5,7 @@
 /client/src/.DS_Store
 /client/src/scss/index.css
 
+/dist
+
 .env
 .DS_Store

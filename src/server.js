@@ -1,11 +1,13 @@
 require('dotenv').config()
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const meetupApi = require('meetup-api')({ key: process.env.MEETUP_API_KEY || '' });
-const fetch = require('node-fetch');
-const nodemailer = require('nodemailer');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import meetupApi from 'meetup-api';
+import fetch from 'node-fetch';
+import nodemailer from 'nodemailer';
+
+meetupApi({ key: process.env.MEETUP_API_KEY || '' });
 
 const app = express();
 const port = process.env.PORT || 5000;
