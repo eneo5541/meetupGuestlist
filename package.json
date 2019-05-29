@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn install && yarn start-react",
-    "server": "nodemon server.js",
+    "server": "nodemon src/server.js",
     "start": "yarn server & yarn client"
   },
   "dependencies": {
