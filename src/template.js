@@ -6,7 +6,6 @@ function template(title, initialState = {}, content = "") {
       <head>
         <meta charset="utf-8">
         <title>${title}</title>
-        <link href="assets/index.css" rel="stylesheet">
       </head>
       <body style="background-color: #f7f7f7; font-family: sans-serif; margin: 0; padding: 0;">
         <div class="content">
