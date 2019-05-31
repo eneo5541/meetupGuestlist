@@ -167,7 +167,6 @@ class Attendance extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="attendance">
         <Header
