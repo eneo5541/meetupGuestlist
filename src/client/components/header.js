@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Menu from './menu';
 import ProgressBar from './progress-bar';
+import * as style from '../styles/header';
 
 const Header = (props) => {
   const getAttendance = (asPercentage) => {
@@ -11,31 +12,32 @@ const Header = (props) => {
   }
 
   return (
-    <div className="attendance-header">
-      <h1 className="attendance-header__title">{props.currentEventName}</h1>
-      <div className="attendance-header__searchbar">
-        <div className="attendance-header__capacity">
+    <div className={style.header}>
+      <h1 className={style.title}>{props.currentEventName}</h1>
+      <div className={style.searchBar}>
+        <div className={style.capacity}>
           {`Guests: ${getAttendance()}`}
         </div>
         <input
-          className="attendance-header__search"
+          className={style.search}
           type="text"
           onChange={props.onSearch}
           value={props.searchString}
           placeholder="Search for a guest"
         />
         <button
-          className="attendance-header__add_guest_button"
+          className={style.guestButton}
           onClick={props.addNewAttendee}
         >
-          <span className="attendance-header__button-label">Click here if you're not on the guestlist!</span>
+          <span className={style.buttonLabel}>Click here if you're not on the guestlist!</span>
+          <span className={style.mobileButtonLabel}>&#43;</span>
         </button>
       </div>
       <ProgressBar percentage={getAttendance(true)} />
       <Menu>
-        <button onClick={props.updateAttendeesList}>Refresh guest list</button>
-        <button onClick={props.downloadAttendeesList}>Download attendees</button>
-        <button onClick={props.emailAttendeesList}>Email attendees</button>
+        <button className={style.menuButton} onClick={props.updateAttendeesList}>Refresh guest list</button>
+        <button className={style.menuButton} onClick={props.downloadAttendeesList}>Download attendees</button>
+        <button className={style.menuButton} onClick={props.emailAttendeesList}>Email attendees</button>
       </Menu>
     </div>
   );

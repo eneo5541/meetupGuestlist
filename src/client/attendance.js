@@ -168,7 +168,7 @@ class Attendance extends Component {
 
   render() {
     return (
-      <div className="attendance">
+      <React.Fragment>
         <Header
           currentEventName={this.state.currentEvent.name}
           attendees={this.state.attendees}
@@ -185,7 +185,7 @@ class Attendance extends Component {
           toggleAttendeeArrival={this.toggleAttendeeArrival}
           addContactGuest={this.addContactGuest}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

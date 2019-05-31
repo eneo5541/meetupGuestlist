@@ -8,7 +8,7 @@ function template(title, initialState = {}, content = "") {
         <title>${title}</title>
         <link href="assets/index.css" rel="stylesheet">
       </head>
-      <body>
+      <body style="background-color: #f7f7f7; font-family: sans-serif; margin: 0; padding: 0;">
         <div class="content">
           <div id="app" class="wrap-inner">
             ${content}

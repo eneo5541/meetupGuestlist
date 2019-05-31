@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as style from '../styles/progress-bar';
 
 const ProgressBar = ({ percentage }) => (
-  <div className="attendance-progress-bar">
-    <div className="attendance-progress-bar__container">
-      <div className="attendance-progress-bar__bar" style={{ width: `${percentage}%`}} />
+  <div className={style.progressBar}>
+    <div className={style.progressBarContainer}>
+      <div className={style.progressBarWidth(percentage)} />
     </div>
   </div>
 );

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ContactGuest from './contact';
+import * as style from '../styles/guest'
 
 class Guest extends React.Component {
   state = {
@@ -19,30 +20,30 @@ class Guest extends React.Component {
   render() {
     return(
       <li>
-        <div className={classnames('attendance-guest', {[`has-arrived`]: this.props.arrived })}>
-          <div className="attendance-guest__avatar-container">
-            <img className="attendance-guest__avatar" alt={`Avatar of ${this.props.name}`} src={this.props.avatar || './assets/person.png'} />
+        <div className={style.guest(this.props.arrived)}>
+          <div className={style.avatarContainer}>
+            <img className={style.avatar} alt={`Avatar of ${this.props.name}`} src={this.props.avatar || './assets/person.png'} />
           </div>
-          <div className="attendance-guest__details">
-            <div className="attendance-guest__name">
+          <div className={style.guestDetails}>
+            <div className={style.guestName}>
               {this.props.name}
             </div>
-            <div className="attendance-guest__jobs">
+            <div>
               <input type="checkbox" onChange={this.handleChange} checked={this.state.checked} />
               <label htmlFor="jobs">Tell me about jobs at Domain</label>
             </div>
           </div>
-          <div className="attendance-guest__check-in">
+          <div className={style.checkIn}>
             <button
-              className={classnames('attendance-guest__check-in-button', {[`has-arrived`]: this.props.arrived })}
+              className={style.checkInButton(this.props.arrived)}
               onClick={() => { this.props.toggleAttendeeArrival(this.props.id, !this.props.arrived); }}
             >
-              <span className="attendance-guest__name-status">{this.props.arrived ? ' Checked In!' : ' Sign me in!'}</span>
+              <span className={style.nameStatus}>{this.props.arrived ? ' Checked In!' : ' Sign me in!'}</span>
             </button>
           </div>
         </div>
         { this.state.checked &&
-          <div className="attendance-guest__contact">
+          <div className={style.contact}>
             <ContactGuest
               guestID={this.props.id}
               addContactGuest={this.props.addContactGuest}

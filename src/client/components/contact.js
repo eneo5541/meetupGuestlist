@@ -1,4 +1,5 @@
 import React from 'react';
+import * as style from '../styles/contact';
 
 class ContactGuest extends React.Component {
   state = {
@@ -19,16 +20,16 @@ class ContactGuest extends React.Component {
 
   render() {
     return (
-      <form className="attendance-guest__contact-details">
-        <div className="attendance-guest__contact-option">
+      <form className={style.contactDetails}>
+        <div className={style.contactOption}>
           <input type="radio" value="mobile" name="contactType" onChange={this.handleOptionsChange} defaultChecked/>
           <label htmlFor="mobile">Mobile</label>
           <input type="radio" value="email" name="contactType" onChange={this.handleOptionsChange}/>
           <label htmlFor="email">Email</label>
 
-          <div className="attendance-guest__contact-detail">
+          <div>
             <input
-              className="attendance-guest__contact-detail-input"
+              className={style.contactDetailInput}
               name="contact"
               placeholder={`Enter your ${this.state.preference}`}
               type={this.state.preference === 'mobile' ? 'text' : 'email' }
@@ -39,7 +40,7 @@ class ContactGuest extends React.Component {
           </div>
         </div>
         <button
-          className="attendance-guest__contact-button"
+          className={style.contactButton}
           onClick={() => this.props.addContactGuest(this.props.guestID, this.state.contactDetails)}
         >
           Contact Me!

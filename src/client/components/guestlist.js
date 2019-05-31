@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Guest from './guest';
+import * as style from '../styles/guestlist';
 
 const Guestlist = (props) => (
-  <ul className="attendance-guestlist">
+  <ul className={style.guestlist}>
     {props.attendees
       .filter(attendee => attendee.name.toLowerCase().indexOf(props.searchString) > -1)
       .sort((attendee1, attendee2) => {
