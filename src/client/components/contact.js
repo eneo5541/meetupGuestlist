@@ -20,8 +20,8 @@ class ContactGuest extends React.Component {
 
   render() {
     return (
-      <form className={style.contactDetails}>
-        <div className={style.contactOption}>
+      <form css={style.contactDetails}>
+        <div css={style.contactOption}>
           <input type="radio" value="mobile" name="contactType" onChange={this.handleOptionsChange} defaultChecked/>
           <label htmlFor="mobile">Mobile</label>
           <input type="radio" value="email" name="contactType" onChange={this.handleOptionsChange}/>
@@ -29,7 +29,7 @@ class ContactGuest extends React.Component {
 
           <div>
             <input
-              className={style.contactDetailInput}
+              css={style.contactDetailInput}
               name="contact"
               placeholder={`Enter your ${this.state.preference}`}
               type={this.state.preference === 'mobile' ? 'text' : 'email' }
@@ -40,7 +40,7 @@ class ContactGuest extends React.Component {
           </div>
         </div>
         <button
-          className={style.contactButton}
+          css={style.contactButton}
           onClick={() => this.props.addContactGuest(this.props.guestID, this.state.contactDetails)}
         >
           Contact Me!

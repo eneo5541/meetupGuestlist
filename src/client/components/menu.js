@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import * as style from '../styles/menu';
 
 class Menu extends Component {
@@ -15,15 +14,15 @@ class Menu extends Component {
 
   render() {
     return (
-      <div className={style.menu}>
-        <button className={style.menuButton} onClick={this.showMenu}>
+      <div css={style.menu}>
+        <button css={style.menuButton} onClick={this.showMenu}>
           <img
             src="./assets/hamburger.png"
-            className={style.menuIcon}
+            css={style.menuIcon}
             alt="Drop down menu"
           />
         </button>
-        <div className={style.menuContents(this.state.showMenu)}>
+        <div css={style.menuContents(this.state.showMenu)}>
           {this.props.children}
         </div>
       </div>

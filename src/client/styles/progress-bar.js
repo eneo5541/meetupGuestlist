@@ -1,5 +1,9 @@
-import { css } from 'emotion';
+import { css } from '@emotion/core';
 import vars from './variables';
+
+export const pink = css`
+  background-color: hotpink;
+`;
 
 export const progressBar = css`
   text-align: left;

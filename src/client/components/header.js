@@ -12,32 +12,32 @@ const Header = (props) => {
   }
 
   return (
-    <div className={style.header}>
-      <h1 className={style.title}>{props.currentEventName}</h1>
-      <div className={style.searchBar}>
-        <div className={style.capacity}>
+    <div css={style.header}>
+      <h1 css={style.title}>{props.currentEventName}</h1>
+      <div css={style.searchBar}>
+        <div css={style.capacity}>
           {`Guests: ${getAttendance()}`}
         </div>
         <input
-          className={style.search}
+          css={style.search}
           type="text"
           onChange={props.onSearch}
           value={props.searchString}
           placeholder="Search for a guest"
         />
         <button
-          className={style.guestButton}
+          css={style.guestButton}
           onClick={props.addNewAttendee}
         >
-          <span className={style.buttonLabel}>Click here if you're not on the guestlist!</span>
-          <span className={style.mobileButtonLabel}>&#43;</span>
+          <span css={style.buttonLabel}>Click here if you're not on the guestlist!</span>
+          <span css={style.mobileButtonLabel}>&#43;</span>
         </button>
       </div>
       <ProgressBar percentage={getAttendance(true)} />
       <Menu>
-        <button className={style.menuButton} onClick={props.updateAttendeesList}>Refresh guest list</button>
-        <button className={style.menuButton} onClick={props.downloadAttendeesList}>Download attendees</button>
-        <button className={style.menuButton} onClick={props.emailAttendeesList}>Email attendees</button>
+        <button css={style.menuButton} onClick={props.updateAttendeesList}>Refresh guest list</button>
+        <button css={style.menuButton} onClick={props.downloadAttendeesList}>Download attendees</button>
+        <button css={style.menuButton} onClick={props.emailAttendeesList}>Email attendees</button>
       </Menu>
     </div>
   );

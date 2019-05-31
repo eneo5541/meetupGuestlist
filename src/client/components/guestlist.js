@@ -4,7 +4,7 @@ import Guest from './guest';
 import * as style from '../styles/guestlist';
 
 const Guestlist = (props) => (
-  <ul className={style.guestlist}>
+  <ul css={style.guestlist}>
     {props.attendees
       .filter(attendee => attendee.name.toLowerCase().indexOf(props.searchString) > -1)
       .sort((attendee1, attendee2) => {

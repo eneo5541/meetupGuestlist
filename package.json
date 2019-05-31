@@ -10,10 +10,8 @@
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "body-parser": "^1.19.0",
-    "classnames": "2.2.6",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
-    "emotion": "^10.0.9",
     "express": "^4.17.1",
     "meetup-api": "^1.4.38",
     "nodemailer": "^6.2.1",

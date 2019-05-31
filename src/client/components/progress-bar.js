@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import * as style from '../styles/progress-bar';
 
 const ProgressBar = ({ percentage }) => (
-  <div className={style.progressBar}>
-    <div className={style.progressBarContainer}>
-      <div className={style.progressBarWidth(percentage)} />
+  <div css={style.progressBar}>
+    <div css={style.progressBarContainer}>
+      <div css={style.progressBarWidth(percentage)} />
     </div>
   </div>
 );
