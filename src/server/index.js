@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 
 const express = require('express');
@@ -7,8 +6,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const meetupApi = require('meetup-api')({ key: process.env.MEETUP_API_KEY || '' });
 const nodemailer = require('nodemailer');
-const template = require('./dist/template').default;
-const ssr = require('./dist/server').default;
+const template = require('./template').default;
+const ssr = require('./server').default;
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
+app.use('/assets', express.static(path.resolve(__dirname, '../../assets')));
 
 app.get('/', (req, res) => {
   const content  = ssr();

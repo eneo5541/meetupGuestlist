@@ -1,6 +1,6 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
-import Attendance from './client/attendance';
+import Attendance from './attendance';
 
 hydrate(
   <Attendance />,

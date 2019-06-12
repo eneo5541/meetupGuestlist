@@ -10,12 +10,17 @@ A simple app for taking a guestlist of a meetup event. It pulls down the latest 
 * Add new guests on the fly with a quick button press
 * The guest list can be downloaded locally or emailed
 * Responsive layout for mobile, tablet and desktop
-* Runs a node server for Meetup API calls and email functions, and server-side renders the client guestlist app
 
 ### Installation
 
 ```bash
 yarn install
-yarn build
+```
+
+This will install the dependencies of the node server
+
+```bash
 yarn start
 ```
+
+This will bundle webpack and babel and start the node server. The React component is server-side rendered

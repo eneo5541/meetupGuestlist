@@ -2,7 +2,7 @@
   "name": "meetup_guestlist_server",
   "version": "1.0.0",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "yarn build && nodemon ./dist/server/index.js",
     "pack": "webpack --config webpack.config.js",
     "babel": "babel src -d dist",
     "build": "npm run pack && npm run babel"
