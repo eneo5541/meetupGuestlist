@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const meetupApi = require('meetup-api')({ key: process.env.MEETUP_API_KEY || '' });
 const nodemailer = require('nodemailer');
-const template = require('./dist/template');
-const ssr = require('./dist/server');
+const template = require('./dist/template').default;
+const ssr = require('./dist/server').default;
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -24,9 +24,9 @@ app.use(bodyParser.json());
 app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
 
 app.get('/', (req, res) => {
-  const { preloadedState, content}  = ssr({ isFetching: false })
-  const response = template('Meetup Guestlist', preloadedState, content)
-  res.setHeader('Cache-Control', 'assets, max-age=604800')
+  const content  = ssr();
+  const response = template('Meetup Guestlist', content);
+  res.setHeader('Cache-Control', 'assets, max-age=604800');
   res.send(response);
 });
 
