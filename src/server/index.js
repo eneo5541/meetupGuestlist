@@ -1,13 +1,16 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
 
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const meetupApi = require('meetup-api')({ key: process.env.MEETUP_API_KEY || '' });
-const nodemailer = require('nodemailer');
-const template = require('./template').default;
-const ssr = require('./server').default;
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import meetup from 'meetup-api';
+import nodemailer from 'nodemailer';
+import template from './template';
+import ssr from './server';
+
+dotenv.config();
+const meetupApi = meetup({ key: process.env.MEETUP_API_KEY || '' });
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -66,7 +69,7 @@ app.get('/api/getEventAttendees/:eventId', (req, res) => {
   });
 });
 
-app.post('/api/sendEmailEventAttendees', function (req, res) {
+app.post('/api/sendEmailEventAttendees', (req, res) => {
   if(!process.env.MEETUP_EMAIL || !process.env.MEETUP_EMAIL_PASS) {
     res.status(500).json({ error: 'No email specified in .env' });
     return;
