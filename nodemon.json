@@ -1,0 +1,6 @@
+{
+  "events": {
+    "restart": "npm run pack && npm run babel"
+  }, 
+  "ignore": ["assets/*", "dist/*"]
+}

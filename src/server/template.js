@@ -1,7 +1,6 @@
-// html skeleton provider
-function template(title, initialState = {}, content = "") {
-  return `
-    <!DOCTYPE html>
+
+const template = (title, content = '') => (
+  ` <!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="utf-8">
@@ -13,13 +12,9 @@ function template(title, initialState = {}, content = "") {
             ${content}
           </div>
         </div>
-        <script>
-          window.__STATE__ = ${JSON.stringify(initialState)}
-        </script>
         <script src="assets/client.js"></script>
       </body>
-    </html>
-  `;
-}
+    </html>`
+);
 
-module.exports = template;
+export default template;

@@ -1,14 +1,16 @@
+import dotenv from 'dotenv';
 
-require('dotenv').config();
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import meetup from 'meetup-api';
+import nodemailer from 'nodemailer';
+import template from './template';
+import ssr from './server';
 
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const meetupApi = require('meetup-api')({ key: process.env.MEETUP_API_KEY || '' });
-const nodemailer = require('nodemailer');
-const template = require('./dist/template');
-const ssr = require('./dist/server');
+dotenv.config();
+const meetupApi = meetup({ key: process.env.MEETUP_API_KEY || '' });
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,12 +23,12 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/assets', express.static(path.resolve(__dirname, 'assets')));
+app.use('/assets', express.static(path.resolve(__dirname, '../../assets')));
 
 app.get('/', (req, res) => {
-  const { preloadedState, content}  = ssr({ isFetching: false })
-  const response = template('Meetup Guestlist', preloadedState, content)
-  res.setHeader('Cache-Control', 'assets, max-age=604800')
+  const content  = ssr();
+  const response = template('Meetup Guestlist', content);
+  res.setHeader('Cache-Control', 'assets, max-age=604800');
   res.send(response);
 });
 
@@ -67,7 +69,7 @@ app.get('/api/getEventAttendees/:eventId', (req, res) => {
   });
 });
 
-app.post('/api/sendEmailEventAttendees', function (req, res) {
+app.post('/api/sendEmailEventAttendees', (req, res) => {
   if(!process.env.MEETUP_EMAIL || !process.env.MEETUP_EMAIL_PASS) {
     res.status(500).json({ error: 'No email specified in .env' });
     return;
