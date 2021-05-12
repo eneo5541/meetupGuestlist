@@ -14,7 +14,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "meetup-api": "^1.4.38",
-    "nodemailer": "^6.2.1",
+    "nodemailer": "^6.4.16",
     "prop-types": "15.6.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
